@@ -1,8 +1,11 @@
 FROM debian:8
 
+COPY debian-backports.list /etc/apt/sources.list.d
 RUN apt-get -y update
-RUN apt-get -y install cmake ninja-build python-setuptools g++ doxygen git libboost-all-dev
+RUN apt-get -y install ninja-build python-setuptools g++ doxygen git libboost-all-dev
+RUN apt-get -y -t jessie-backports install cmake
 RUN apt-get clean
+
 
 RUN easy_install pip
 RUN pip install conan
